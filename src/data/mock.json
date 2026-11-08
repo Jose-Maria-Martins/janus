@@ -1,0 +1,846 @@
+{
+  "company": {
+    "nif": "123456789",
+    "name": "Construções Ribeiro, Lda",
+    "sector": "Construction",
+    "cae": "41200",
+    "employees": 60,
+    "annualPayroll": 990000,
+    "city": "Lisboa",
+    "revenueBand": "€5M–€10M"
+  },
+  "insurers": [
+    {
+      "id": "fidelidade",
+      "name": "Fidelidade",
+      "initials": "FI",
+      "color": "#E5484D",
+      "logo": "/logos/fidelidade.svg"
+    },
+    {
+      "id": "ageas",
+      "name": "Ageas",
+      "initials": "AG",
+      "color": "#3E63DD",
+      "logo": "/logos/ageas.svg"
+    },
+    {
+      "id": "allianz",
+      "name": "Allianz",
+      "initials": "AL",
+      "color": "#0090FF",
+      "logo": "/logos/allianz.svg"
+    },
+    {
+      "id": "tranquilidade",
+      "name": "Tranquilidade",
+      "initials": "TR",
+      "color": "#30A46C",
+      "logo": "/logos/tranquilidade.svg"
+    },
+    {
+      "id": "zurich",
+      "name": "Zurich",
+      "initials": "ZU",
+      "color": "#8E4EC6",
+      "logo": "/logos/zurich.svg"
+    },
+    {
+      "id": "lusitania",
+      "name": "Lusitania",
+      "initials": "LU",
+      "color": "#F76B15",
+      "logo": "/logos/lusitania.svg"
+    }
+  ],
+  "policies": [
+    {
+      "id": "p1",
+      "type": "work_accident",
+      "insurerId": "zurich",
+      "policyNumber": "AT-2024-118734",
+      "annualPremium": 34600,
+      "paymentFrequency": "quarterly",
+      "startDate": "2024-12-25",
+      "renewalDate": "2026-12-25",
+      "covered": [
+        {
+          "name": "Medical, surgical and hospital costs",
+          "limit": "As required by law"
+        },
+        {
+          "name": "Temporary incapacity",
+          "limit": "As required by law"
+        },
+        {
+          "name": "Permanent incapacity",
+          "limit": "As required by law"
+        },
+        {
+          "name": "Death and funeral costs",
+          "limit": "As required by law"
+        },
+        {
+          "name": "Accidents on the way to and from work"
+        }
+      ],
+      "notCovered": [
+        "Workers not declared on the payroll sent to the insurer",
+        "Accidents caused intentionally by the worker",
+        "Accidents under the influence of alcohol or drugs"
+      ],
+      "questions": [
+        {
+          "q": "Am I covered if a worker falls from scaffolding?",
+          "a": "Yes, as long as the worker is on the declared payroll and was working at the time.",
+          "clause": "Art. 3 — Scope of cover: accidents during work and on the way to and from work."
+        },
+        {
+          "q": "What if we hire a new worker mid-year?",
+          "a": "You must add them to the monthly payroll declaration, otherwise they are not covered.",
+          "clause": "Art. 9 — Declaration of insured wages."
+        },
+        {
+          "q": "Are subcontractors covered?",
+          "a": "No. Subcontractors need their own work accident insurance.",
+          "clause": "Art. 4 — Persons insured."
+        }
+      ]
+    },
+    {
+      "id": "p2",
+      "type": "vehicles",
+      "insurerId": "fidelidade",
+      "policyNumber": "AU-2023-552901",
+      "annualPremium": 8400,
+      "paymentFrequency": "annual",
+      "startDate": "2023-03-01",
+      "renewalDate": "2027-03-01",
+      "covered": [
+        {
+          "name": "Mandatory third-party liability (14 vehicles)",
+          "limit": "€6,450,000"
+        },
+        {
+          "name": "Roadside assistance",
+          "limit": "Up to 100 km"
+        },
+        {
+          "name": "Glass breakage",
+          "deductible": "€0"
+        }
+      ],
+      "notCovered": [
+        "Own damage (collision, theft, fire)",
+        "Goods carried in the vehicle"
+      ],
+      "questions": [
+        {
+          "q": "Is my van covered if it is stolen?",
+          "a": "No. This policy only has third-party liability. Theft needs own-damage cover.",
+          "clause": "Special conditions — Optional covers not contracted."
+        },
+        {
+          "q": "Can any employee drive the vans?",
+          "a": "Yes, any driver with a valid licence held for more than 2 years.",
+          "clause": "Art. 6 — Authorised drivers."
+        },
+        {
+          "q": "Are tools inside the van covered?",
+          "a": "No. Goods carried are excluded.",
+          "clause": "Art. 12 — Exclusions."
+        }
+      ],
+      "vehicles": [
+        {
+          "plate": "AQ-27-TL",
+          "model": "Ford Transit Custom",
+          "year": 2021
+        },
+        {
+          "plate": "AQ-27-TM",
+          "model": "Ford Transit Custom",
+          "year": 2021
+        },
+        {
+          "plate": "BC-04-RS",
+          "model": "Renault Master",
+          "year": 2022
+        },
+        {
+          "plate": "BC-04-RT",
+          "model": "Renault Master",
+          "year": 2022
+        },
+        {
+          "plate": "BG-61-XP",
+          "model": "Peugeot Boxer",
+          "year": 2023
+        },
+        {
+          "plate": "BG-61-XQ",
+          "model": "Peugeot Boxer",
+          "year": 2023
+        },
+        {
+          "plate": "AL-88-JD",
+          "model": "Citroën Jumpy",
+          "year": 2020
+        },
+        {
+          "plate": "AL-88-JE",
+          "model": "Citroën Jumpy",
+          "year": 2020
+        },
+        {
+          "plate": "94-VX-12",
+          "model": "Mercedes-Benz Sprinter",
+          "year": 2019
+        },
+        {
+          "plate": "94-VX-13",
+          "model": "Mercedes-Benz Sprinter",
+          "year": 2019
+        },
+        {
+          "plate": "AZ-15-HN",
+          "model": "Toyota Hilux",
+          "year": 2021
+        },
+        {
+          "plate": "AZ-15-HO",
+          "model": "Toyota Hilux",
+          "year": 2021
+        },
+        {
+          "plate": "BH-30-KC",
+          "model": "Ford Transit",
+          "year": 2024
+        },
+        {
+          "plate": "BH-30-KD",
+          "model": "Ford Transit",
+          "year": 2024
+        }
+      ]
+    },
+    {
+      "id": "p3",
+      "type": "multirisk",
+      "insurerId": "tranquilidade",
+      "policyNumber": "MR-2022-090412",
+      "annualPremium": 2100,
+      "paymentFrequency": "annual",
+      "startDate": "2022-06-15",
+      "renewalDate": "2027-06-15",
+      "covered": [
+        {
+          "name": "Fire, lightning and explosion",
+          "limit": "€450,000"
+        },
+        {
+          "name": "Storms and floods",
+          "limit": "€450,000",
+          "deductible": "€500"
+        },
+        {
+          "name": "Theft with forced entry",
+          "limit": "€60,000",
+          "deductible": "€250"
+        },
+        {
+          "name": "Electrical damage",
+          "limit": "€15,000"
+        }
+      ],
+      "notCovered": [
+        "Equipment kept outside the warehouse",
+        "Business interruption (lost revenue while closed)"
+      ],
+      "questions": [
+        {
+          "q": "Am I covered if the warehouse floods?",
+          "a": "Yes, up to €450,000, with a €500 deductible.",
+          "clause": "Art. 2.3 — Storms and floods."
+        },
+        {
+          "q": "What if we can't work for a month after a fire?",
+          "a": "Lost revenue is not covered. You would need business interruption cover.",
+          "clause": "Art. 14 — Exclusions."
+        },
+        {
+          "q": "Are tools left on a building site covered?",
+          "a": "No. Only goods inside the insured premises are covered.",
+          "clause": "Art. 1 — Insured location."
+        }
+      ]
+    },
+    {
+      "id": "p4",
+      "type": "liability",
+      "insurerId": "ageas",
+      "policyNumber": "RC-2024-301177",
+      "annualPremium": 2500,
+      "paymentFrequency": "annual",
+      "startDate": "2024-02-01",
+      "renewalDate": "2027-02-01",
+      "covered": [
+        {
+          "name": "Damage to third parties during works",
+          "limit": "€500,000",
+          "deductible": "€1,000"
+        },
+        {
+          "name": "Damage to neighbouring buildings",
+          "limit": "€250,000"
+        }
+      ],
+      "notCovered": [
+        "Defects in the work itself",
+        "Damage caused by subcontractors"
+      ],
+      "questions": [
+        {
+          "q": "Am I covered if we damage a neighbour's wall?",
+          "a": "Yes, up to €250,000.",
+          "clause": "Art. 2.2 — Damage to neighbouring property."
+        },
+        {
+          "q": "What if a client complains about a badly built wall?",
+          "a": "No. Defects in your own work are excluded.",
+          "clause": "Art. 8 — Exclusions."
+        },
+        {
+          "q": "Is a passer-by hurt by falling material covered?",
+          "a": "Yes, up to €500,000, with a €1,000 deductible.",
+          "clause": "Art. 2.1 — Third-party bodily injury."
+        }
+      ]
+    }
+  ],
+  "importSample": {
+    "id": "p5",
+    "type": "health",
+    "insurerId": "allianz",
+    "policyNumber": "SA-2025-774420",
+    "annualPremium": 18000,
+    "paymentFrequency": "monthly",
+    "startDate": "2025-01-01",
+    "renewalDate": "2027-01-01",
+    "covered": [
+      {
+        "name": "Hospitalisation (60 employees)",
+        "limit": "€25,000 per person"
+      },
+      {
+        "name": "Outpatient consultations",
+        "limit": "€1,000 per person",
+        "deductible": "€15 per visit"
+      },
+      {
+        "name": "Dental",
+        "limit": "€300 per person"
+      }
+    ],
+    "notCovered": [
+      "Family members of employees",
+      "Pre-existing conditions in the first year"
+    ],
+    "questions": [
+      {
+        "q": "Can employees add their children?",
+        "a": "Not under the current plan. Family members are excluded.",
+        "clause": "Art. 3 — Persons insured."
+      },
+      {
+        "q": "Is dental covered?",
+        "a": "Yes, up to €300 per person per year.",
+        "clause": "Annex I — Dental."
+      },
+      {
+        "q": "Does a new hire get cover straight away?",
+        "a": "Yes, from the first day of the month after they join.",
+        "clause": "Art. 5 — Start of cover."
+      }
+    ]
+  },
+  "gaps": [
+    {
+      "type": "vehicles_own_damage",
+      "title": "Own damage for your vans",
+      "message": "Your 14 vans only have third-party cover. Theft or a crash is paid by you.",
+      "protectsAgainst": "Theft, fire and collision damage to your own vehicles."
+    },
+    {
+      "type": "tools_equipment",
+      "title": "Tools and equipment on site",
+      "message": "Your multirisk and van policies don't cover tools left on building sites or carried in vans.",
+      "protectsAgainst": "Theft of and damage to tools and machinery on site and in transit."
+    },
+    {
+      "type": "business_interruption",
+      "title": "Business interruption",
+      "message": "Your multirisk policy covers the warehouse, but not the revenue you lose while it's closed.",
+      "protectsAgainst": "Lost revenue and fixed costs after a fire or flood stops your work."
+    },
+    {
+      "type": "cyber",
+      "title": "Cyber insurance",
+      "message": "You pay suppliers and subcontractors by bank transfer every week. One hacked email can redirect a payment.",
+      "protectsAgainst": "Hacked email, ransomware, fake supplier invoices and data leaks."
+    }
+  ],
+  "quotes": [
+    {
+      "id": "q1",
+      "policyType": "work_accident",
+      "insurerId": "allianz",
+      "annualPremium": 27700,
+      "highlights": [
+        "Same cover required by law",
+        "Monthly payroll upload online",
+        "Claims app"
+      ]
+    },
+    {
+      "id": "q2",
+      "policyType": "work_accident",
+      "insurerId": "tranquilidade",
+      "annualPremium": 29800,
+      "highlights": [
+        "Same cover required by law",
+        "Dedicated account manager"
+      ]
+    },
+    {
+      "id": "q3",
+      "policyType": "work_accident",
+      "insurerId": "ageas",
+      "annualPremium": 31400,
+      "highlights": [
+        "Same cover required by law",
+        "Discount if bundled with liability"
+      ]
+    },
+    {
+      "id": "q4",
+      "policyType": "work_accident",
+      "insurerId": "fidelidade",
+      "annualPremium": 33400,
+      "highlights": [
+        "Same cover required by law",
+        "Largest clinic network"
+      ]
+    },
+    {
+      "id": "q5",
+      "policyType": "work_accident",
+      "insurerId": "lusitania",
+      "annualPremium": 33700,
+      "highlights": [
+        "Same cover required by law"
+      ]
+    },
+    {
+      "id": "q6",
+      "policyType": "cyber",
+      "insurerId": "allianz",
+      "annualPremium": 1600,
+      "highlights": [
+        "Up to €250,000 cover",
+        "24/7 incident response line",
+        "Covers fake invoice fraud"
+      ]
+    },
+    {
+      "id": "q7",
+      "policyType": "cyber",
+      "insurerId": "zurich",
+      "annualPremium": 1900,
+      "highlights": [
+        "Up to €500,000 cover",
+        "Ransomware negotiation included"
+      ]
+    },
+    {
+      "id": "q8",
+      "policyType": "cyber",
+      "insurerId": "ageas",
+      "annualPremium": 2000,
+      "highlights": [
+        "Up to €300,000 cover",
+        "Free staff phishing training"
+      ]
+    },
+    {
+      "id": "q9",
+      "policyType": "business_interruption",
+      "insurerId": "tranquilidade",
+      "annualPremium": 2800,
+      "highlights": [
+        "Up to 6 months of lost revenue",
+        "Adds to your current multirisk policy"
+      ]
+    },
+    {
+      "id": "q10",
+      "policyType": "business_interruption",
+      "insurerId": "fidelidade",
+      "annualPremium": 3200,
+      "highlights": [
+        "Up to 12 months of lost revenue",
+        "Covers fixed costs and salaries"
+      ]
+    },
+    {
+      "id": "q11",
+      "policyType": "vehicles_own_damage",
+      "insurerId": "fidelidade",
+      "annualPremium": 6800,
+      "highlights": [
+        "All 14 vans",
+        "Theft, fire and collision",
+        "€500 deductible per claim"
+      ]
+    },
+    {
+      "id": "q12",
+      "policyType": "vehicles_own_damage",
+      "insurerId": "lusitania",
+      "annualPremium": 6000,
+      "highlights": [
+        "All 14 vans",
+        "Theft and fire only",
+        "€750 deductible per claim"
+      ]
+    },
+    {
+      "id": "q13",
+      "policyType": "vehicles_own_damage",
+      "insurerId": "ageas",
+      "annualPremium": 7350,
+      "highlights": [
+        "All 14 vans",
+        "Theft, fire and collision",
+        "Replacement van while repaired"
+      ]
+    },
+    {
+      "id": "q14",
+      "policyType": "vehicles",
+      "insurerId": "ageas",
+      "annualPremium": 7300,
+      "highlights": [
+        "All 14 vans",
+        "24/7 roadside assistance",
+        "Glass cover included"
+      ]
+    },
+    {
+      "id": "q15",
+      "policyType": "vehicles",
+      "insurerId": "allianz",
+      "annualPremium": 7600,
+      "highlights": [
+        "All 14 vans",
+        "Replacement van after an accident"
+      ]
+    },
+    {
+      "id": "q16",
+      "policyType": "vehicles",
+      "insurerId": "lusitania",
+      "annualPremium": 7900,
+      "highlights": [
+        "All 14 vans",
+        "Roadside assistance up to 50 km"
+      ]
+    },
+    {
+      "id": "q17",
+      "policyType": "multirisk",
+      "insurerId": "fidelidade",
+      "annualPremium": 2050,
+      "highlights": [
+        "Same limits as today",
+        "Electrical damage up to €25,000"
+      ]
+    },
+    {
+      "id": "q18",
+      "policyType": "multirisk",
+      "insurerId": "allianz",
+      "annualPremium": 2150,
+      "highlights": [
+        "Same limits as today",
+        "Theft deductible €150"
+      ]
+    },
+    {
+      "id": "q19",
+      "policyType": "multirisk",
+      "insurerId": "zurich",
+      "annualPremium": 2200,
+      "highlights": [
+        "Same limits as today",
+        "Covers equipment in the yard"
+      ]
+    },
+    {
+      "id": "q20",
+      "policyType": "liability",
+      "insurerId": "zurich",
+      "annualPremium": 2450,
+      "highlights": [
+        "Same limits as today",
+        "Covers damage by subcontractors"
+      ]
+    },
+    {
+      "id": "q21",
+      "policyType": "liability",
+      "insurerId": "tranquilidade",
+      "annualPremium": 2550,
+      "highlights": [
+        "Same limits as today",
+        "Deductible €500"
+      ]
+    },
+    {
+      "id": "q22",
+      "policyType": "liability",
+      "insurerId": "allianz",
+      "annualPremium": 2600,
+      "highlights": [
+        "Limit raised to €750,000"
+      ]
+    },
+    {
+      "id": "q23",
+      "policyType": "health",
+      "insurerId": "ageas",
+      "annualPremium": 17400,
+      "highlights": [
+        "All 60 employees",
+        "Dental up to €250"
+      ]
+    },
+    {
+      "id": "q24",
+      "policyType": "health",
+      "insurerId": "fidelidade",
+      "annualPremium": 18600,
+      "highlights": [
+        "All 60 employees",
+        "Largest clinic network",
+        "Family members can join"
+      ]
+    },
+    {
+      "id": "q25",
+      "policyType": "health",
+      "insurerId": "zurich",
+      "annualPremium": 19200,
+      "highlights": [
+        "All 60 employees",
+        "Video consultations included"
+      ]
+    },
+    {
+      "id": "q26",
+      "policyType": "tools_equipment",
+      "insurerId": "allianz",
+      "annualPremium": 1350,
+      "highlights": [
+        "Tools up to €150,000",
+        "On site and in your vans",
+        "€250 deductible"
+      ]
+    },
+    {
+      "id": "q27",
+      "policyType": "tools_equipment",
+      "insurerId": "fidelidade",
+      "annualPremium": 1500,
+      "highlights": [
+        "Tools up to €200,000",
+        "Theft from locked vans included"
+      ]
+    },
+    {
+      "id": "q28",
+      "policyType": "tools_equipment",
+      "insurerId": "tranquilidade",
+      "annualPremium": 1620,
+      "highlights": [
+        "Tools up to €200,000",
+        "New-for-old replacement"
+      ]
+    }
+  ],
+  "payments": [
+    {
+      "id": "pay1",
+      "policyId": "p1",
+      "date": "2026-09-25",
+      "amount": 8650,
+      "status": "paid"
+    },
+    {
+      "id": "pay2",
+      "policyId": "p1",
+      "date": "2026-12-25",
+      "amount": 8650,
+      "status": "upcoming"
+    },
+    {
+      "id": "pay3",
+      "policyId": "p4",
+      "date": "2027-02-01",
+      "amount": 2500,
+      "status": "upcoming"
+    },
+    {
+      "id": "pay4",
+      "policyId": "p2",
+      "date": "2027-03-01",
+      "amount": 8400,
+      "status": "upcoming"
+    },
+    {
+      "id": "pay5",
+      "policyId": "p3",
+      "date": "2027-06-15",
+      "amount": 2100,
+      "status": "upcoming"
+    }
+  ],
+  "claims": [
+    {
+      "id": "c1",
+      "policyId": "p2",
+      "title": "Broken windscreen on van 3",
+      "date": "2026-10-02",
+      "status": "paid",
+      "amount": 420,
+      "steps": [
+        {
+          "label": "Reported",
+          "date": "2026-10-02",
+          "done": true
+        },
+        {
+          "label": "Approved by insurer",
+          "date": "2026-10-06",
+          "done": true
+        },
+        {
+          "label": "Paid €420",
+          "date": "2026-10-15",
+          "done": true
+        }
+      ]
+    },
+    {
+      "id": "c2",
+      "policyId": "p1",
+      "title": "Worker sprained ankle on the Alcântara site",
+      "date": "2026-10-28",
+      "status": "in_progress",
+      "steps": [
+        {
+          "label": "Reported",
+          "date": "2026-10-28",
+          "done": true
+        },
+        {
+          "label": "Clinic assigned by insurer",
+          "date": "2026-10-30",
+          "done": true
+        },
+        {
+          "label": "Waiting for medical report",
+          "done": false
+        },
+        {
+          "label": "Closed",
+          "done": false
+        }
+      ]
+    }
+  ],
+  "team": [
+    {
+      "name": "Rui Ribeiro",
+      "role": "Owner",
+      "access": "Admin"
+    },
+    {
+      "name": "Ana Costa",
+      "role": "Office manager",
+      "access": "Admin"
+    },
+    {
+      "name": "Carlos Mendes",
+      "role": "Accountant (external)",
+      "access": "View only"
+    }
+  ],
+  "assistant": [
+    {
+      "q": "Which of my policies renews next?",
+      "a": "Your work accident policy with Zurich renews on 25 December 2026. You pay €34,600 a year for it.",
+      "source": "Work accident policy AT-2024-118734"
+    },
+    {
+      "q": "How much do we pay for insurance in total?",
+      "a": "€47,600 a year across 4 policies. Work accident is 73% of it.",
+      "source": "All policies"
+    },
+    {
+      "q": "Are we covered if the warehouse floods?",
+      "a": "Yes, up to €450,000, with a €500 deductible.",
+      "source": "Multirisk MR-2022-090412, Art. 2.3 — Storms and floods"
+    },
+    {
+      "q": "Is a subcontractor covered if he gets hurt on our site?",
+      "a": "No. Your work accident policy only covers your own declared workers. Ask the subcontractor for a certificate of their own policy before they start.",
+      "source": "Work accident AT-2024-118734, Art. 4 — Persons insured"
+    }
+  ],
+  "activity": [
+    {
+      "date": "2026-11-06",
+      "type": "reminder",
+      "text": "Work accident renews in 49 days",
+      "policyId": "p1"
+    },
+    {
+      "date": "2026-10-28",
+      "type": "claim",
+      "text": "Claim opened: worker sprained ankle",
+      "claimId": "c2"
+    },
+    {
+      "date": "2026-10-15",
+      "type": "claim",
+      "text": "Claim paid: broken windscreen",
+      "amount": 420,
+      "claimId": "c1"
+    },
+    {
+      "date": "2026-09-25",
+      "type": "payment",
+      "text": "Premium paid: work accident",
+      "amount": -8650,
+      "policyId": "p1"
+    },
+    {
+      "date": "2026-09-01",
+      "type": "certificate",
+      "text": "Liability certificate downloaded for a tender",
+      "policyId": "p4"
+    }
+  ],
+  "anchorDate": "2026-11-08"
+}
