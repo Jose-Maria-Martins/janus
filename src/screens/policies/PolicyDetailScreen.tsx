@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from 'react';
 import { Link, useParams } from 'react-router';
-import { ArrowLeftRight, BadgeCheck, Check, Download, FileText, MessageCircle, PenLine, Receipt, X } from 'lucide-react';
+import { ArrowLeftRight, BadgeCheck, Check, ClipboardPlus, Download, FileText, MessageCircle, PenLine, Receipt, X } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -81,6 +81,7 @@ export function PolicyDetailScreen() {
             <QuickAction onClick={() => setSheet('certificate')} label="Certificate" icon={BadgeCheck} />
             {kind && !policy.replacedBy && <QuickAction onClick={() => setSheet('change')} label="Change" icon={PenLine} />}
             {canSwitch && <QuickAction to={compareTo} label="Compare" icon={ArrowLeftRight} />}
+            {policy.startDate <= todayIso() && <QuickAction to={`/claims/new?policy=${policy.id}`} label="Claim" icon={ClipboardPlus} />}
             <QuickAction to={`/ask?policy=${policy.id}`} label="Ask" icon={MessageCircle} />
           </nav>
 
