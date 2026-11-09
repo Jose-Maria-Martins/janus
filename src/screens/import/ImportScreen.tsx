@@ -14,7 +14,7 @@ import { SuccessView } from '@/components/SuccessView';
 import { data, insurerById } from '@/data';
 import { activityToday, getState, setState, useStore } from '@/data/store';
 import { formatEUR, POLICY_LABEL } from '@/lib/format';
-import { FREQUENCY_LABEL, generatePayments } from '@/lib/policy';
+import { annualTotal, FREQUENCY_LABEL, generatePayments } from '@/lib/policy';
 import type { Policy, PolicyType } from '@/types';
 
 type Step = 'pick' | 'reading' | 'review' | 'done';
@@ -216,7 +216,7 @@ export function ImportScreen() {
   }
 
   // Done
-  const total = policies.reduce((sum, p) => sum + p.annualPremium, 0);
+  const total = annualTotal(policies);
   return (
     <FlowScreen
       first

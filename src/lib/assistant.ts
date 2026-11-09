@@ -2,6 +2,7 @@ import { data, insurerById } from '../data';
 import type { AssistantAnswer, Policy } from '../types';
 import { formatDate } from './dates';
 import { formatEUR, POLICY_LABEL } from './format';
+import { activePolicies, annualTotal } from './policy';
 
 export type Answer = { q: string; a: string; source: { label: string; to?: string } };
 
@@ -53,7 +54,8 @@ const policySource = (p: Policy, clause?: string) => ({
   to: `/policies/${p.id}`,
 });
 
-function liveAnswer(item: AssistantAnswer, policies: Policy[]): Answer {
+function liveAnswer(item: AssistantAnswer, all: Policy[]): Answer {
+  const policies = activePolicies(all);
   if (item.live === 'renewal') {
     const next = [...policies].sort((a, b) => a.renewalDate.localeCompare(b.renewalDate))[0];
     const insurer = insurerById(next.insurerId).name;
@@ -64,7 +66,7 @@ function liveAnswer(item: AssistantAnswer, policies: Policy[]): Answer {
       source: policySource(next),
     };
   }
-  const total = policies.reduce((sum, p) => sum + p.annualPremium, 0);
+  const total = annualTotal(policies);
   const biggest = [...policies].sort((a, b) => b.annualPremium - a.annualPremium)[0];
   return {
     q: item.q,

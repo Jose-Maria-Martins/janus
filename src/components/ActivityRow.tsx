@@ -1,5 +1,5 @@
 import { Link } from 'react-router';
-import { BadgeCheck, CalendarClock, FileText, PenLine, Receipt, Upload } from 'lucide-react';
+import { BadgeCheck, CalendarClock, FileText, PenLine, Receipt, ShieldCheck, Upload } from 'lucide-react';
 import { Item, ItemContent, ItemDescription, ItemMedia } from '@/components/ui/item';
 import { data, insurerById } from '@/data';
 import { useStore } from '@/data/store';
@@ -10,7 +10,7 @@ import { IconCircle } from './IconCircle';
 import { InsurerLogo } from './InsurerLogo';
 import { RowTitle } from './RowTitle';
 
-const ICON = { reminder: CalendarClock, claim: FileText, certificate: BadgeCheck, payment: Receipt, change: PenLine, import: Upload };
+const ICON = { reminder: CalendarClock, claim: FileText, certificate: BadgeCheck, payment: Receipt, change: PenLine, import: Upload, purchase: ShieldCheck };
 
 /** A Revolut transaction row: logo, title and date, amount on the right. */
 export function ActivityRow({ item }: { item: Activity }) {

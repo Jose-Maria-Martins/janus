@@ -8,6 +8,7 @@ import { data, insurerById } from '@/data';
 import { useStore } from '@/data/store';
 import { findAnswer, knowledge, type Answer } from '@/lib/assistant';
 import { POLICY_LABEL } from '@/lib/format';
+import { activePolicies } from '@/lib/policy';
 
 type From = 'bot' | 'person';
 type Message =
@@ -31,7 +32,7 @@ export function AskScreen() {
       from: 'bot',
       text: policy
         ? `Hi! Ask me anything about your ${POLICY_LABEL[policy.type].toLowerCase()} policy with ${insurerById(policy.insurerId).name}. I answer from the policy itself and show you where it says so.`
-        : `Hi! I know your ${policies.length} policies inside out. Ask me what you're covered for, what you pay or when things renew.`,
+        : `Hi! I know your ${activePolicies(policies).length} policies inside out. Ask me what you're covered for, what you pay or when things renew.`,
     },
   ]);
   const [typing, setTyping] = useState<From>();

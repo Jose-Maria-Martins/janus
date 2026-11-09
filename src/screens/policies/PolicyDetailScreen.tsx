@@ -13,11 +13,11 @@ import { PushScreen, Widget } from '@/components/Screen';
 import { useStore } from '@/data/store';
 import { insurerById } from '@/data';
 import { RENEWAL_WINDOW_DAYS } from '@/lib/attention';
-import { daysUntil, formatDate } from '@/lib/dates';
+import { daysUntil, formatDate, todayIso } from '@/lib/dates';
 import { downloadCertificate, downloadPolicy } from '@/lib/documents';
 import { formatEUR, POLICY_LABEL } from '@/lib/format';
 import { priceVsMarket } from '@/lib/market';
-import { changeKind, coverName, FREQUENCY_LABEL, policyPayments } from '@/lib/policy';
+import { changeKind, coverName, FREQUENCY_LABEL, policyPayments, policyStatus } from '@/lib/policy';
 import { policyColor } from '@/lib/policyStyle';
 import type { Policy } from '@/types';
 import { CertificateSheet } from './CertificateSheet';
@@ -37,7 +37,10 @@ export function PolicyDetailScreen() {
   const market = priceVsMarket(policy);
   const color = policyColor(policy.type);
   const kind = changeKind(policy.type);
-  const compareTo = `/buy?tab=switch&policy=${policy.id}`;
+  const status = policyStatus(policy, policies);
+  /** A policy being switched away from, or not started yet, has nothing to compare. */
+  const canSwitch = !policy.replacedBy && policy.startDate <= todayIso();
+  const compareTo = `/buy/switch/${policy.id}`;
 
   return (
     <>
@@ -61,7 +64,14 @@ export function PolicyDetailScreen() {
               <span className="ml-1.5 text-lg font-medium tracking-normal text-foreground/70">/ year</span>
             </p>
             <div className="mt-4 flex flex-wrap justify-center gap-2">
-              <Badge variant={soon ? 'warning' : 'secondary'}>{soon ? `Renews in ${days} days` : `Renews ${formatDate(policy.renewalDate)}`}</Badge>
+              {status?.kind === 'ending' ? (
+                <Badge variant="warning">{status.text}</Badge>
+              ) : status?.kind === 'starting' ? (
+                <Badge variant="secondary">{status.text}</Badge>
+              ) : (
+                <Badge variant={soon ? 'warning' : 'secondary'}>{soon ? `Renews in ${days} days` : `Renews ${formatDate(policy.renewalDate)}`}</Badge>
+              )}
+              {status?.kind === 'bought' && <Badge variant="success">{status.text}</Badge>}
               {market?.status === 'above' && <Badge variant="destructive">{formatEUR(market.diff)} above market</Badge>}
               {market?.status === 'fair' && <Badge variant="success">Fair price</Badge>}
             </div>
@@ -69,8 +79,8 @@ export function PolicyDetailScreen() {
 
           <nav className="mt-8 flex justify-center gap-1 sm:gap-6">
             <QuickAction onClick={() => setSheet('certificate')} label="Certificate" icon={BadgeCheck} />
-            {kind && <QuickAction onClick={() => setSheet('change')} label="Change" icon={PenLine} />}
-            <QuickAction to={compareTo} label="Compare" icon={ArrowLeftRight} />
+            {kind && !policy.replacedBy && <QuickAction onClick={() => setSheet('change')} label="Change" icon={PenLine} />}
+            {canSwitch && <QuickAction to={compareTo} label="Compare" icon={ArrowLeftRight} />}
             <QuickAction to={`/ask?policy=${policy.id}`} label="Ask" icon={MessageCircle} />
           </nav>
 
@@ -78,8 +88,8 @@ export function PolicyDetailScreen() {
             <dl className="px-3 pb-1">
               <Row label="Policy number" value={policy.policyNumber} />
               <Row label="Payments" value={FREQUENCY_LABEL[policy.paymentFrequency]} />
-              <Row label="Started" value={formatDate(policy.startDate)} />
-              <Row label="Renews" value={formatDate(policy.renewalDate)} />
+              <Row label={policy.startDate > todayIso() ? 'Starts' : 'Started'} value={formatDate(policy.startDate)} />
+              <Row label={policy.replacedBy ? 'Ends' : 'Renews'} value={formatDate(policy.renewalDate)} />
               {kind === 'employees' && <Row label="Employees covered" value={String(company.employees)} />}
               {kind === 'vehicles' && <Row label="Vans covered" value={String(policy.vehicles?.length ?? 0)} />}
             </dl>
@@ -107,40 +117,44 @@ export function PolicyDetailScreen() {
             ))}
           </Widget>
 
-          <Widget title="What's not covered">
-            {policy.notCovered.map((n) => (
-              <Item key={n}>
-                <ItemMedia>
-                  <IconCircle className="size-7 bg-destructive/15 text-destructive [&_svg]:size-4">
-                    <X strokeWidth={3} />
-                  </IconCircle>
-                </ItemMedia>
-                <ItemContent>
-                  <ItemTitle className="line-clamp-none">{n}</ItemTitle>
-                </ItemContent>
-              </Item>
-            ))}
-          </Widget>
-
-          <Widget title="Ask about this policy">
-            <Accordion type="single" collapsible className="px-3">
-              {policy.questions.map((q) => (
-                <AccordionItem key={q.q} value={q.q}>
-                  <AccordionTrigger>{q.q}</AccordionTrigger>
-                  <AccordionContent className="text-base">
-                    <p>{q.a}</p>
-                    <div className="rounded-lg bg-secondary px-3.5 py-3 text-sm text-muted-foreground">
-                      <p className="text-xs font-semibold tracking-wide text-foreground/70 uppercase">From the policy</p>
-                      {q.clause}
-                    </div>
-                  </AccordionContent>
-                </AccordionItem>
+          {policy.notCovered.length > 0 && (
+            <Widget title="What's not covered">
+              {policy.notCovered.map((n) => (
+                <Item key={n}>
+                  <ItemMedia>
+                    <IconCircle className="size-7 bg-destructive/15 text-destructive [&_svg]:size-4">
+                      <X strokeWidth={3} />
+                    </IconCircle>
+                  </ItemMedia>
+                  <ItemContent>
+                    <ItemTitle className="line-clamp-none">{n}</ItemTitle>
+                  </ItemContent>
+                </Item>
               ))}
-            </Accordion>
-            <Button asChild variant="link" className="justify-start self-start px-3">
-              <Link to={`/ask?policy=${policy.id}`}>Ask something else</Link>
-            </Button>
-          </Widget>
+            </Widget>
+          )}
+
+          {policy.questions.length > 0 && (
+            <Widget title="Ask about this policy">
+              <Accordion type="single" collapsible className="px-3">
+                {policy.questions.map((q) => (
+                  <AccordionItem key={q.q} value={q.q}>
+                    <AccordionTrigger>{q.q}</AccordionTrigger>
+                    <AccordionContent className="text-base">
+                      <p>{q.a}</p>
+                      <div className="rounded-lg bg-secondary px-3.5 py-3 text-sm text-muted-foreground">
+                        <p className="text-xs font-semibold tracking-wide text-foreground/70 uppercase">From the policy</p>
+                        {q.clause}
+                      </div>
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+              <Button asChild variant="link" className="justify-start self-start px-3">
+                <Link to={`/ask?policy=${policy.id}`}>Ask something else</Link>
+              </Button>
+            </Widget>
+          )}
 
           <Payments policy={policy} />
 
@@ -159,9 +173,11 @@ export function PolicyDetailScreen() {
               ))}
           </Widget>
 
-          <Button asChild size="lg" className="mt-6 w-full">
-            <Link to={compareTo}>Compare prices</Link>
-          </Button>
+          {canSwitch && (
+            <Button asChild size="lg" className="mt-6 w-full">
+              <Link to={compareTo}>Compare prices</Link>
+            </Button>
+          )}
         </PushScreen>
       </div>
 

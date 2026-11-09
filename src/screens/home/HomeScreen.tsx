@@ -11,6 +11,7 @@ import { useStore } from '@/data/store';
 import { attentionItems, nextRenewal } from '@/lib/attention';
 import { daysUntil } from '@/lib/dates';
 import { formatEUR } from '@/lib/format';
+import { activePolicies, annualTotal } from '@/lib/policy';
 
 /** Revolut's home wallpaper: bright violet at the top, fading into the indigo page. */
 const WALLPAPER =
@@ -18,7 +19,7 @@ const WALLPAPER =
 
 export function HomeScreen() {
   const { policies, activity } = useStore();
-  const total = policies.reduce((sum, p) => sum + p.annualPremium, 0);
+  const total = annualTotal(policies);
   const next = nextRenewal();
   const sorted = [...activity].sort((a, b) => b.date.localeCompare(a.date));
 
@@ -30,7 +31,7 @@ export function HomeScreen() {
         <TabScreen>
           {/* Balance-style header */}
           <section className="pt-16 text-center">
-            <p className="text-sm font-medium text-foreground/90">Annual premium · {policies.length} policies</p>
+            <p className="text-sm font-medium text-foreground/90">Annual premium · {activePolicies(policies).length} policies</p>
             <p className="mt-2 text-6xl leading-none font-semibold tracking-tight tabular-nums">
               <span className="mr-1 text-3xl tracking-normal">€</span>
               {total.toLocaleString('en-IE')}
@@ -48,7 +49,7 @@ export function HomeScreen() {
 
           <nav className="mt-5 flex justify-center gap-1 sm:gap-6">
             <QuickAction to="/import" label="Import" icon={Upload} />
-            <QuickAction to={`/buy?tab=switch&policy=${next.id}`} label="Compare" icon={ArrowLeftRight} />
+            <QuickAction to={`/buy/switch/${next.id}`} label="Compare" icon={ArrowLeftRight} />
             <QuickAction to="/buy?tab=add" label="Add cover" icon={Plus} />
             <QuickAction to="/ask" label="Ask" icon={MessageCircle} />
           </nav>

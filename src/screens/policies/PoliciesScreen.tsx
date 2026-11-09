@@ -7,6 +7,7 @@ import { PolicyRow } from '@/components/PolicyRow';
 import { TabScreen, Widget } from '@/components/Screen';
 import { useStore } from '@/data/store';
 import { formatEUR, POLICY_LABEL } from '@/lib/format';
+import { activePolicies, annualTotal } from '@/lib/policy';
 import type { PolicyType } from '@/types';
 
 export function PoliciesScreen() {
@@ -15,13 +16,13 @@ export function PoliciesScreen() {
 
   const types = [...new Set(policies.map((p) => p.type))];
   const shown = filter === 'all' ? policies : policies.filter((p) => p.type === filter);
-  const total = shown.reduce((sum, p) => sum + p.annualPremium, 0);
+  const total = annualTotal(shown);
 
   return (
     <TabScreen>
       <section className="pt-8 text-center">
         <p className="text-sm font-medium text-muted-foreground">
-          {filter === 'all' ? `${policies.length} policies` : POLICY_LABEL[filter]} · per year
+          {filter === 'all' ? `${activePolicies(policies).length} policies` : POLICY_LABEL[filter]} · per year
         </p>
         <p className="mt-2 text-5xl leading-none font-semibold tracking-tight tabular-nums">{formatEUR(total)}</p>
 
