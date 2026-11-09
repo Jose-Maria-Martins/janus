@@ -3,7 +3,6 @@ import { Shell } from './components/Shell';
 import { useStore } from './data/store';
 import { HomeScreen } from './screens/home/HomeScreen';
 import { ImportScreen } from './screens/import/ImportScreen';
-import { Placeholder } from './screens/Placeholder';
 import { AskScreen } from './screens/ask/AskScreen';
 import { BuyFlow } from './screens/buy/BuyFlow';
 import { BuyScreen } from './screens/buy/BuyScreen';
@@ -13,6 +12,11 @@ import { ReportFlow } from './screens/claims/ReportFlow';
 import { OnboardingFlow } from './screens/onboarding/OnboardingFlow';
 import { PoliciesScreen } from './screens/policies/PoliciesScreen';
 import { PolicyDetailScreen } from './screens/policies/PolicyDetailScreen';
+import { CompanyScreen } from './screens/profile/CompanyScreen';
+import { DocumentsScreen } from './screens/profile/DocumentsScreen';
+import { PaymentsScreen } from './screens/profile/PaymentsScreen';
+import { ProfileScreen } from './screens/profile/ProfileScreen';
+import { TeamScreen } from './screens/profile/TeamScreen';
 
 export default function App() {
   return (
@@ -30,7 +34,11 @@ export default function App() {
           <Route path="claims" element={<ClaimsScreen />} />
           <Route path="claims/new" element={<ReportFlow />} />
           <Route path="claims/:id" element={<ClaimDetailScreen />} />
-          <Route path="profile" element={<Placeholder title="Profile" step={9} />} />
+          <Route path="profile" element={<ProfileScreen />} />
+          <Route path="profile/company" element={<CompanyScreen />} />
+          <Route path="profile/team" element={<TeamScreen />} />
+          <Route path="profile/payments" element={<PaymentsScreen />} />
+          <Route path="profile/documents" element={<DocumentsScreen />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Route>
       </Routes>
