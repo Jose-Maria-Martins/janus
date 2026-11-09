@@ -1,10 +1,11 @@
 import { NavLink } from 'react-router';
-import { data } from '../data';
+import { useStore } from '../data/store';
 import { initials } from '../lib/format';
 import { TABS } from './nav';
 
 /** Desktop navigation (≥1024px). */
 export function Sidebar() {
+  const { company } = useStore();
   return (
     <aside className="fixed inset-y-0 left-0 z-30 hidden w-[260px] flex-col border-r border-border bg-background px-4 py-6 lg:flex">
       <div className="flex items-center gap-2.5 px-3 pb-8">
@@ -32,11 +33,11 @@ export function Sidebar() {
 
       <div className="mt-auto flex items-center gap-3 rounded-2xl bg-card p-3">
         <span className="grid size-10 shrink-0 place-items-center rounded-full bg-primary text-sm font-bold">
-          {initials(data.company.name)}
+          {initials(company.name)}
         </span>
         <div className="min-w-0">
-          <p className="truncate text-sm font-semibold">{data.company.name}</p>
-          <p className="text-xs text-muted-foreground">NIF {data.company.nif}</p>
+          <p className="truncate text-sm font-semibold">{company.name}</p>
+          <p className="text-xs text-muted-foreground">NIF {company.nif}</p>
         </div>
       </div>
     </aside>

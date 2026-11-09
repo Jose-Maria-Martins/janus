@@ -11,11 +11,21 @@ export type State = {
   activity: Activity[];
   certificates: Certificate[];
   claims: Claim[];
+  /** Set once the welcome flow is finished; until then Home sends first-time visitors to /welcome. */
+  onboarded: boolean;
 };
 
 const KEY = 'janus:v2';
 
-const initial = (): State => ({ company: data.company, policies: data.policies, payments: data.payments, activity: data.activity, certificates: [], claims: data.claims });
+const initial = (): State => ({
+  company: data.company,
+  policies: data.policies,
+  payments: data.payments,
+  activity: data.activity,
+  certificates: [],
+  claims: data.claims,
+  onboarded: false,
+});
 
 /** Saved dates are moved forward by the days since saving, like the mock data. */
 function load(): State {
