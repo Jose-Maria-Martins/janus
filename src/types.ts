@@ -67,7 +67,8 @@ export type Claim = {
   /** Compressed JPEG data URLs. */
   photos?: string[];
 };
-export type TeamMember = { name: string; role: string; access: 'Admin' | 'View only' };
+/** People invited in the app have an email instead of a role until they join. */
+export type TeamMember = { name: string; role?: string; access: 'Admin' | 'View only'; email?: string; invited?: boolean };
 /** `live` answers are worked out from the current policies; `a` is the text as of the mock data. */
 export type AssistantAnswer = { q: string; a: string; source: string; live?: 'renewal' | 'total' };
 export type Activity = {

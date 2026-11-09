@@ -23,3 +23,6 @@ export const initials = (name: string) =>
     .slice(0, 2)
     .map((w) => w[0])
     .join('');
+
+/** "506123456" → "506 123 456". */
+export const formatNif = (nif: string) => nif.replace(/(\d{3})(?=\d)/g, '$1 ');

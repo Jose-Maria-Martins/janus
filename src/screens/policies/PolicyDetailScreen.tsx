@@ -1,10 +1,11 @@
-import { useState, type ReactNode } from 'react';
+import { useState } from 'react';
 import { Link, useParams } from 'react-router';
-import { ArrowLeftRight, BadgeCheck, Check, ClipboardPlus, Download, FileText, MessageCircle, PenLine, Receipt, X } from 'lucide-react';
+import { ArrowLeftRight, BadgeCheck, Check, ClipboardPlus, FileText, MessageCircle, PenLine, Receipt, X } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Item, ItemActions, ItemContent, ItemDescription, ItemMedia, ItemTitle } from '@/components/ui/item';
+import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from '@/components/ui/item';
+import { DocRow } from '@/components/DocRow';
 import { IconCircle } from '@/components/IconCircle';
 import { InsurerLogo } from '@/components/InsurerLogo';
 import { QuickAction } from '@/components/QuickAction';
@@ -220,24 +221,5 @@ function Payments({ policy }: { policy: Policy }) {
         </Item>
       ))}
     </Widget>
-  );
-}
-
-function DocRow({ icon, title, subtitle, onClick }: { icon: ReactNode; title: string; subtitle: string; onClick: () => void }) {
-  return (
-    <Item asChild>
-      <button onClick={onClick}>
-        <ItemMedia>
-          <IconCircle>{icon}</IconCircle>
-        </ItemMedia>
-        <ItemContent>
-          <ItemTitle>{title}</ItemTitle>
-          <ItemDescription>{subtitle}</ItemDescription>
-        </ItemContent>
-        <ItemActions>
-          <Download className="size-5 text-muted-foreground" />
-        </ItemActions>
-      </button>
-    </Item>
   );
 }

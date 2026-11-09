@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from 'react';
 import { daysBetween, todayIso } from '../lib/dates';
-import type { Activity, Certificate, Claim, Company, Payment, Policy } from '../types';
+import type { Activity, Certificate, Claim, Company, Payment, Policy, TeamMember } from '../types';
 import { data, shiftDates } from '.';
 
 /** Everything the user can change in the demo. Saved in localStorage so it survives a reload. */
@@ -11,9 +11,14 @@ export type State = {
   activity: Activity[];
   certificates: Certificate[];
   claims: Claim[];
+  team: TeamMember[];
+  /** Which reminders the company wants; shown on Profile. */
+  notifications: Record<NotificationKind, boolean>;
   /** Set once the welcome flow is finished; until then Home sends first-time visitors to /welcome. */
   onboarded: boolean;
 };
+
+export type NotificationKind = 'renewals' | 'payments' | 'claims';
 
 const KEY = 'janus:v2';
 
@@ -24,6 +29,8 @@ const initial = (): State => ({
   activity: data.activity,
   certificates: [],
   claims: data.claims,
+  team: data.team,
+  notifications: { renewals: true, payments: true, claims: true },
   onboarded: false,
 });
 
@@ -56,6 +63,17 @@ export function setState(update: (s: State) => State) {
 }
 
 export const getState = () => state;
+
+/** Back to the mock data, as on a first visit: the welcome flow shows again. */
+export function resetDemo() {
+  try {
+    localStorage.removeItem(KEY);
+  } catch {
+    // Nothing saved to clear.
+  }
+  state = initial();
+  listeners.forEach((l) => l());
+}
 
 export function useStore(): State {
   return useSyncExternalStore(

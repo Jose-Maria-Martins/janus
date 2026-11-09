@@ -49,6 +49,10 @@ export function policyPayments(policy: Policy, payments: Payment[]): Payment[] {
     .sort((a, b) => b.date.localeCompare(a.date));
 }
 
+/** Every policy's payments, each with its policy. */
+export const companyPayments = (policies: Policy[], payments: Payment[]) =>
+  policies.flatMap((policy) => policyPayments(policy, payments).map((payment) => ({ policy, payment })));
+
 /** For an imported policy: the last three instalments (paid) and the next one (upcoming). */
 export function generatePayments(policy: Policy): Payment[] {
   const step = 12 / INSTALMENTS[policy.paymentFrequency];

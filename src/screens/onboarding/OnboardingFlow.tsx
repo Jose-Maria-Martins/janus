@@ -13,13 +13,11 @@ import { RowTitle } from '@/components/RowTitle';
 import { data, insurerById } from '@/data';
 import { getState, setState } from '@/data/store';
 import { attentionItems } from '@/lib/attention';
-import { formatEUR, initials, POLICY_LABEL } from '@/lib/format';
+import { formatEUR, formatNif, initials, POLICY_LABEL } from '@/lib/format';
 import { activePolicies, annualTotal } from '@/lib/policy';
 
 type Step = 'welcome' | 'nif' | 'lookup' | 'company' | 'search' | 'found';
 const STEPS: Step[] = ['nif', 'lookup', 'company', 'search', 'found'];
-
-const formatNif = (nif: string) => nif.replace(/(\d{3})(?=\d)/g, '$1 ');
 
 /** First visit: NIF → the company is looked up → confirm it → the policies under that NIF are found → Home. */
 export function OnboardingFlow() {
