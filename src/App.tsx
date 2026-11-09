@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router';
 import { Shell } from './components/Shell';
+import { useStore } from './data/store';
 import { HomeScreen } from './screens/home/HomeScreen';
 import { ImportScreen } from './screens/import/ImportScreen';
 import { Placeholder } from './screens/Placeholder';
@@ -9,6 +10,7 @@ import { BuyScreen } from './screens/buy/BuyScreen';
 import { ClaimDetailScreen } from './screens/claims/ClaimDetailScreen';
 import { ClaimsScreen } from './screens/claims/ClaimsScreen';
 import { ReportFlow } from './screens/claims/ReportFlow';
+import { OnboardingFlow } from './screens/onboarding/OnboardingFlow';
 import { PoliciesScreen } from './screens/policies/PoliciesScreen';
 import { PolicyDetailScreen } from './screens/policies/PolicyDetailScreen';
 
@@ -16,8 +18,9 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="welcome" element={<OnboardingFlow />} />
         <Route element={<Shell />}>
-          <Route index element={<HomeScreen />} />
+          <Route index element={<FirstVisit />} />
           <Route path="policies" element={<PoliciesScreen />} />
           <Route path="policies/:id" element={<PolicyDetailScreen />} />
           <Route path="import" element={<ImportScreen />} />
@@ -33,4 +36,9 @@ export default function App() {
       </Routes>
     </BrowserRouter>
   );
+}
+
+/** Home, unless this browser hasn't been through the welcome flow yet. Links to other screens open directly. */
+function FirstVisit() {
+  return useStore().onboarded ? <HomeScreen /> : <Navigate to="/welcome" replace />;
 }
