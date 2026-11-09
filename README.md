@@ -43,7 +43,7 @@ Open **[janus.jose-maria-martins.workers.dev](https://janus.jose-maria-martins.w
 
 ## Why it exists
 
-Built for *Product Management in Technology* (2785) at Nova SBE, taught by Sam Rhea.
+Built for *Product Management in Technology* (2785) at Nova SBE, taught by Sam Rhea, CIO at Cloudflare.
 
 ## Run it locally
 
