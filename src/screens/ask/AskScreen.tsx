@@ -26,17 +26,22 @@ export function AskScreen() {
   const { policies } = useStore();
   const policy = policies.find((p) => p.id === params.get('policy'));
 
+  // "Chat with us" on Profile opens the chat with a person already in it.
+  const startWithPerson = params.get('with') === 'person';
+
   const [messages, setMessages] = useState<Message[]>(() => [
-    {
-      id: 0,
-      from: 'bot',
-      text: policy
-        ? `Hi! Ask me anything about your ${POLICY_LABEL[policy.type].toLowerCase()} policy with ${insurerById(policy.insurerId).name}. I answer from the policy itself and show you where it says so.`
-        : `Hi! I know your ${activePolicies(policies).length} policies inside out. Ask me what you're covered for, what you pay or when things renew.`,
-    },
+    startWithPerson
+      ? { id: 0, from: 'person', text: `Hi, I'm ${PERSON} from the Janus team. Tell me what you need: a question, a change or a problem with a claim.` }
+      : {
+          id: 0,
+          from: 'bot',
+          text: policy
+            ? `Hi! Ask me anything about your ${POLICY_LABEL[policy.type].toLowerCase()} policy with ${insurerById(policy.insurerId).name}. I answer from the policy itself and show you where it says so.`
+            : `Hi! I know your ${activePolicies(policies).length} policies inside out. Ask me what you're covered for, what you pay or when things renew.`,
+        },
   ]);
   const [typing, setTyping] = useState<From>();
-  const [withPerson, setWithPerson] = useState(false);
+  const [withPerson, setWithPerson] = useState(startWithPerson);
   const [text, setText] = useState('');
   const nextId = useRef(1);
   const timers = useRef<number[]>([]);
@@ -172,7 +177,8 @@ export function AskScreen() {
           </div>
         )}
         <form onSubmit={submit} className="relative px-4">
-          <Input value={text} onChange={(e) => setText(e.target.value)} placeholder="Ask about your policies" className="rounded-full pr-14" aria-label="Your question" />
+          <Input value={text} onChange={(e) => setText(e.target.value)} placeholder={withPerson ? `Message ${PERSON}` : 'Ask about your policies'}
+            className="rounded-full pr-14" aria-label="Your question" />
           <Button type="submit" size="icon-sm" disabled={!text.trim() || !!typing} aria-label="Send" className="absolute top-1.5 right-5.5">
             <ArrowUp />
           </Button>
