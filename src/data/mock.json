@@ -844,5 +844,6 @@
       "policyId": "p4"
     }
   ],
+  "paymentMethod": { "label": "Direct debit", "detail": "Millennium bcp ···· 4821" },
   "anchorDate": "2026-11-08"
 }

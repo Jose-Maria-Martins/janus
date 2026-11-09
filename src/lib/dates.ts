@@ -12,6 +12,8 @@ export function todayIso(): string {
 
 export const daysBetween = (from: string, to: string) => Math.round((parse(to) - parse(from)) / DAY);
 export const addDays = (iso: string, days: number) => toIso(parse(iso) + days * DAY);
+/** Same day next year (29 Feb becomes 1 Mar). */
+export const addYear = (iso: string) => toIso(Date.UTC(Number(iso.slice(0, 4)) + 1, Number(iso.slice(5, 7)) - 1, Number(iso.slice(8, 10))));
 export const daysUntil = (iso: string) => daysBetween(todayIso(), iso);
 
 export function formatDate(iso: string, opts: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short', year: 'numeric' }) {

@@ -12,6 +12,7 @@ import { SuccessView } from '@/components/SuccessView';
 import { activityToday, setState, useStore } from '@/data/store';
 import { formatEUR, POLICY_LABEL } from '@/lib/format';
 import { changeKind, unitPrice } from '@/lib/policy';
+import { lookUpPlate, plateKey as toPlateKey } from '@/lib/plates';
 import type { Policy, Vehicle } from '@/types';
 
 type Step = 'menu' | 'add' | 'remove' | 'done';
@@ -61,7 +62,7 @@ export function ChangeSheet({ policy, open, onClose }: { policy: Policy; open: b
     setStep('done');
   };
 
-  const plateKey = plate.toUpperCase().replace(/[^A-Z0-9]/g, '');
+  const plateKey = toPlateKey(plate);
   const lookUp = () => setFound(lookUpPlate(plateKey));
   const duplicate = found && policy.vehicles?.some((v) => v.plate === found.plate);
 
@@ -192,11 +193,4 @@ function Form({ button, disabled, onSubmit, children }: { button: string; disabl
       </Button>
     </form>
   );
-}
-
-/** Pretend registration lookup: the same plate always gives the same van. */
-function lookUpPlate(key: string): Vehicle {
-  const models = ['Ford Transit Custom', 'Renault Master', 'Peugeot Boxer', 'Citroën Jumpy', 'Mercedes-Benz Vito', 'Ford Transit'];
-  const sum = [...key].reduce((n, c) => n + c.charCodeAt(0), 0);
-  return { plate: `${key.slice(0, 2)}-${key.slice(2, 4)}-${key.slice(4, 6)}`, model: models[sum % models.length], year: 2019 + (sum % 6) };
 }

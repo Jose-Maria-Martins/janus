@@ -37,6 +37,10 @@ export type Policy = {
   notCovered: string[];
   questions: { q: string; a: string; clause: string }[];
   vehicles?: Vehicle[];
+  /** Bought in the app: no price-vs-market badge. */
+  boughtWithJanus?: boolean;
+  /** Switched away from: the id of the policy that takes over on the renewal date. */
+  replacedBy?: string;
 };
 
 export type Quote = { id: string; policyType: PolicyType; insurerId: string; annualPremium: number; highlights: string[] };
@@ -56,7 +60,7 @@ export type TeamMember = { name: string; role: string; access: 'Admin' | 'View o
 export type AssistantAnswer = { q: string; a: string; source: string; live?: 'renewal' | 'total' };
 export type Activity = {
   date: string;
-  type: 'reminder' | 'claim' | 'payment' | 'certificate' | 'change' | 'import';
+  type: 'reminder' | 'claim' | 'payment' | 'certificate' | 'change' | 'import' | 'purchase';
   text: string;
   amount?: number;
   policyId?: string;
@@ -79,4 +83,5 @@ export type MockData = {
   team: TeamMember[];
   assistant: AssistantAnswer[];
   activity: Activity[];
+  paymentMethod: { label: string; detail: string };
 };
