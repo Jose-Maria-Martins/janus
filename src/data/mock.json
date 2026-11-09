@@ -788,11 +788,13 @@
   ],
   "assistant": [
     {
+      "live": "renewal",
       "q": "Which of my policies renews next?",
       "a": "Your work accident policy with Zurich renews on 25 December 2026. You pay €34,600 a year for it.",
       "source": "Work accident policy AT-2024-118734"
     },
     {
+      "live": "total",
       "q": "How much do we pay for insurance in total?",
       "a": "€47,600 a year across 4 policies. Work accident is 73% of it.",
       "source": "All policies"

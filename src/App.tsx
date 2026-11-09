@@ -3,6 +3,7 @@ import { Shell } from './components/Shell';
 import { HomeScreen } from './screens/home/HomeScreen';
 import { ImportScreen } from './screens/import/ImportScreen';
 import { Placeholder, PushPlaceholder } from './screens/Placeholder';
+import { AskScreen } from './screens/ask/AskScreen';
 import { PoliciesScreen } from './screens/policies/PoliciesScreen';
 import { PolicyDetailScreen } from './screens/policies/PolicyDetailScreen';
 
@@ -15,7 +16,7 @@ export default function App() {
           <Route path="policies" element={<PoliciesScreen />} />
           <Route path="policies/:id" element={<PolicyDetailScreen />} />
           <Route path="import" element={<ImportScreen />} />
-          <Route path="ask" element={<PushPlaceholder title="Ask" step={5} />} />
+          <Route path="ask" element={<AskScreen />} />
           <Route path="buy" element={<Placeholder title="Buy" step={6} />} />
           <Route path="claims" element={<Placeholder title="Claims" step={7} />} />
           <Route path="claims/:id" element={<PushPlaceholder title="Claim" step={7} />} />

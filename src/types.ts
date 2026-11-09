@@ -52,7 +52,8 @@ export type Claim = {
   steps: { label: string; date?: string; done: boolean }[];
 };
 export type TeamMember = { name: string; role: string; access: 'Admin' | 'View only' };
-export type AssistantAnswer = { q: string; a: string; source: string };
+/** `live` answers are worked out from the current policies; `a` is the text as of the mock data. */
+export type AssistantAnswer = { q: string; a: string; source: string; live?: 'renewal' | 'total' };
 export type Activity = {
   date: string;
   type: 'reminder' | 'claim' | 'payment' | 'certificate' | 'change' | 'import';
