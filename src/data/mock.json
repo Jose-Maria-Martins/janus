@@ -718,8 +718,14 @@
   "claims": [
     {
       "id": "c1",
+      "number": "SIN-2026-04187",
       "policyId": "p2",
-      "title": "Broken windscreen on van 3",
+      "title": "Broken windscreen on BC-04-RS",
+      "category": "glass",
+      "place": "A1 near Vila Franca de Xira",
+      "vehicle": "BC-04-RS",
+      "cost": "Under €500",
+      "description": "A stone hit the windscreen on the motorway and cracked it across the driver's side. The van was still safe to drive back to the yard.",
       "date": "2026-10-02",
       "status": "paid",
       "amount": 420,
@@ -743,8 +749,13 @@
     },
     {
       "id": "c2",
+      "number": "SIN-2026-05230",
       "policyId": "p1",
       "title": "Worker sprained ankle on the Alcântara site",
+      "category": "injury",
+      "place": "Building site, Alcântara, Lisboa",
+      "injured": "Tiago Ferreira",
+      "description": "Tiago slipped on wet scaffolding boards while carrying materials and twisted his right ankle. He was taken to the clinic the insurer assigned the same day.",
       "date": "2026-10-28",
       "status": "in_progress",
       "steps": [

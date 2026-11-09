@@ -1,9 +1,9 @@
 import { Link } from 'react-router';
 import { BadgeCheck, CalendarClock, FileText, PenLine, Receipt, ShieldCheck, Upload } from 'lucide-react';
 import { Item, ItemContent, ItemDescription, ItemMedia } from '@/components/ui/item';
-import { data, insurerById } from '@/data';
+import { insurerById } from '@/data';
 import { useStore } from '@/data/store';
-import { daysBetween, formatDate, todayIso } from '@/lib/dates';
+import { dayLabel } from '@/lib/dates';
 import { formatEUR } from '@/lib/format';
 import type { Activity } from '@/types';
 import { IconCircle } from './IconCircle';
@@ -14,8 +14,8 @@ const ICON = { reminder: CalendarClock, claim: FileText, certificate: BadgeCheck
 
 /** A Revolut transaction row: logo, title and date, amount on the right. */
 export function ActivityRow({ item }: { item: Activity }) {
-  const { policies } = useStore();
-  const claim = item.claimId ? data.claims.find((c) => c.id === item.claimId) : undefined;
+  const { policies, claims } = useStore();
+  const claim = item.claimId ? claims.find((c) => c.id === item.claimId) : undefined;
   const policy = policies.find((p) => p.id === (item.policyId ?? claim?.policyId));
   const insurer = policy && insurerById(policy.insurerId);
   const to = item.claimId ? `/claims/${item.claimId}` : policy ? `/policies/${policy.id}` : undefined;
@@ -55,12 +55,4 @@ export function ActivityRow({ item }: { item: Activity }) {
   ) : (
     <Item>{body}</Item>
   );
-}
-
-function dayLabel(iso: string) {
-  const ago = daysBetween(iso, todayIso());
-  if (ago === 0) return 'Today';
-  if (ago === 1) return 'Yesterday';
-  const sameYear = iso.slice(0, 4) === todayIso().slice(0, 4);
-  return formatDate(iso, sameYear ? { day: 'numeric', month: 'short' } : { day: 'numeric', month: 'short', year: 'numeric' });
 }

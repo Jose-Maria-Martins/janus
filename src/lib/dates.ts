@@ -19,3 +19,12 @@ export const daysUntil = (iso: string) => daysBetween(todayIso(), iso);
 export function formatDate(iso: string, opts: Intl.DateTimeFormatOptions = { day: 'numeric', month: 'short', year: 'numeric' }) {
   return new Date(parse(iso)).toLocaleDateString('en-GB', { ...opts, timeZone: 'UTC' });
 }
+
+/** "Today", "Yesterday", "7 Nov", or "7 Nov 2025" for another year. */
+export function dayLabel(iso: string) {
+  const ago = daysBetween(iso, todayIso());
+  if (ago === 0) return 'Today';
+  if (ago === 1) return 'Yesterday';
+  const sameYear = iso.slice(0, 4) === todayIso().slice(0, 4);
+  return formatDate(iso, sameYear ? { day: 'numeric', month: 'short' } : { day: 'numeric', month: 'short', year: 'numeric' });
+}

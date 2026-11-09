@@ -48,12 +48,24 @@ export type Gap = { type: PolicyType; title: string; message: string; protectsAg
 export type Payment = { id: string; policyId: string; date: string; amount: number; status: 'paid' | 'upcoming' };
 export type Claim = {
   id: string;
+  /** The insurer's claim number, e.g. SIN-2026-04187. */
+  number: string;
   policyId: string;
   title: string;
+  /** When it happened. */
   date: string;
   status: 'in_progress' | 'paid';
   amount?: number;
   steps: { label: string; date?: string; done: boolean }[];
+  /** What the report flow asked; claims from the mock data have some of these. */
+  category?: string;
+  place?: string;
+  vehicle?: string;
+  injured?: string;
+  cost?: string;
+  description?: string;
+  /** Compressed JPEG data URLs. */
+  photos?: string[];
 };
 export type TeamMember = { name: string; role: string; access: 'Admin' | 'View only' };
 /** `live` answers are worked out from the current policies; `a` is the text as of the mock data. */

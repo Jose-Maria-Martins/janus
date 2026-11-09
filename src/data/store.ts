@@ -1,6 +1,6 @@
 import { useSyncExternalStore } from 'react';
 import { daysBetween, todayIso } from '../lib/dates';
-import type { Activity, Certificate, Company, Payment, Policy } from '../types';
+import type { Activity, Certificate, Claim, Company, Payment, Policy } from '../types';
 import { data, shiftDates } from '.';
 
 /** Everything the user can change in the demo. Saved in localStorage so it survives a reload. */
@@ -10,11 +10,12 @@ export type State = {
   payments: Payment[];
   activity: Activity[];
   certificates: Certificate[];
+  claims: Claim[];
 };
 
 const KEY = 'janus:v2';
 
-const initial = (): State => ({ company: data.company, policies: data.policies, payments: data.payments, activity: data.activity, certificates: [] });
+const initial = (): State => ({ company: data.company, policies: data.policies, payments: data.payments, activity: data.activity, certificates: [], claims: data.claims });
 
 /** Saved dates are moved forward by the days since saving, like the mock data. */
 function load(): State {
@@ -22,7 +23,8 @@ function load(): State {
     const saved = localStorage.getItem(KEY);
     if (saved) {
       const { savedOn, state } = JSON.parse(saved) as { savedOn: string; state: State };
-      return shiftDates(state, daysBetween(savedOn, todayIso()));
+      // Anything missing from an older save comes from the mock data.
+      return { ...initial(), ...shiftDates(state, daysBetween(savedOn, todayIso())) };
     }
   } catch {
     // Storage blocked or corrupt: start from the mock data.

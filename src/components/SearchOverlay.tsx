@@ -6,7 +6,7 @@ import { ClipboardList, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Item, ItemContent, ItemDescription, ItemMedia, ItemTitle } from '@/components/ui/item';
-import { data, insurerById } from '@/data';
+import { insurerById } from '@/data';
 import { useStore } from '@/data/store';
 import { formatEUR, POLICY_LABEL } from '@/lib/format';
 import { IconCircle } from './IconCircle';
@@ -19,10 +19,11 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
   const [query, setQuery] = useState('');
   const q = query.trim().toLowerCase();
 
-  const policies = useStore().policies.filter((p) =>
+  const store = useStore();
+  const policies = store.policies.filter((p) =>
     [POLICY_LABEL[p.type], insurerById(p.insurerId).name, p.policyNumber].some((s) => s.toLowerCase().includes(q)),
   );
-  const claims = data.claims.filter((c) => c.title.toLowerCase().includes(q));
+  const claims = store.claims.filter((c) => [c.title, c.number].some((s) => s.toLowerCase().includes(q)));
   const close = () => {
     setQuery('');
     onClose();
