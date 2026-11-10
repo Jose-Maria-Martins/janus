@@ -22,7 +22,7 @@
       "name": "Ageas",
       "initials": "AG",
       "color": "#3E63DD",
-      "logo": "/logos/ageas.svg"
+      "logo": "/logos/ageas.png"
     },
     {
       "id": "allianz",
@@ -50,7 +50,7 @@
       "name": "Lusitania",
       "initials": "LU",
       "color": "#F76B15",
-      "logo": "/logos/lusitania.svg"
+      "logo": "/logos/lusitania.png"
     }
   ],
   "policies": [
