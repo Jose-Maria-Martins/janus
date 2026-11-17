@@ -55,3 +55,5 @@ npm run dev
 Built with Vite, React, TypeScript, Tailwind and shadcn/ui. There is no backend: all data comes from [`src/data/mock.json`](src/data/mock.json), and dates move with today's date so the demo never goes stale.
 
 Pushing to `main` deploys to Cloudflare Workers.
+
+Building on Janus with a coding agent? Point it at [AGENTS.md](AGENTS.md). It explains the flow (branch, preview link, PR, merge) and how the app is built.
